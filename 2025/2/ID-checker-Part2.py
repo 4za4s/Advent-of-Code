@@ -14,31 +14,22 @@ for sequence in ranges:
     while i <= end:
         ID = str(i)
         IDlength = len(ID)
-        if IDlength % 2 == 0:
-            IDleft = ID[:IDlength//2]
-            IDright = ID[IDlength//2:]
-            if IDleft == IDright:
-                InvalidID.append(i)
-                #print("equals", i)
-                #print(IDleft, IDright)
+        #print(i)
+        for j in range(1, IDlength//2+1):
+            if IDlength % j == 0:
+                repeat = ID[:j]
+                repeats = True
+                #print("----")
+                for k in range(j, IDlength, j):
+                    #print(repeat, ID[k:k+j])
+                    if ID[k:k+j] != repeat:
+                        repeats = False
+                        break
+                if repeats == True:
+                    InvalidID.append(i)
+                    break
+        i+=1
 
-                left = (int(IDleft)+1)
-                #print("1:", left)
-                power = (10**(IDlength//2))
-                #print("2:", power)
-                i = left * power + left
-                #print("next =", i)
-            else:
-                power = (10**(IDlength//2))
-                if int(IDleft) > int(IDright):
-                    i = int(IDleft) * power + int(IDleft)
-                else:
-                    i = (int(IDleft)+1) * power + int(IDleft)+1
-                #print("next !=", i)
-        else:
-            i += (10**(IDlength)) - i
-            #print("next %2", i)
-
-#print(InvalidID)
+print(InvalidID)
 print(sum(InvalidID))
 
