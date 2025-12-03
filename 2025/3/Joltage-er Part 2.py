@@ -43,5 +43,5 @@ while (line):
 
     line = FileInput.readline()
 
-print(jolts)
+#print(jolts)
 print(sum(jolts))
